@@ -1,0 +1,12 @@
+# VERY IMPORTANT!!!!
+.env 
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+
+#.env — Your secret API keys. Never upload these.
+#.venv/ — Your virtual environment folder. It's large and can be recreated.
+#__pycache__/ and *.pyc — Temporary files Python creates automatically.
+#.DS_Store — A Mac-only file. Harmless but unnecessary.
