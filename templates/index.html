@@ -42,6 +42,37 @@
             font-size: 1.1em;
         }
         
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .suggestion-btn {
+            padding: 10px 16px;
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: auto;
+        }
+        
+        .suggestion-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+        }
+        
+        .suggestion-btn:active {
+            transform: translateY(0);
+        }
+        
         .input-group {
             margin-bottom: 20px;
         }
@@ -168,6 +199,15 @@
         <h1>🎬 Movie Recommender</h1>
         <p class="subtitle">Tell me what kind of movie you're looking for</p>
         
+        <div class="suggestions">
+            <button class="suggestion-btn" data-query="Sci-fi movie for a rainy day">🌧️ Sci-fi for a rainy day</button>
+            <button class="suggestion-btn" data-query="Fun family movie night">👨‍👩‍👧‍👦 Family movie night</button>
+            <button class="suggestion-btn" data-query="Classic 90s comedy">😂 90s comedy</button>
+            <button class="suggestion-btn" data-query="Thriller to watch alone at night">🎭 Intense thriller</button>
+            <button class="suggestion-btn" data-query="Romantic movie for date night">💕 Romantic date night</button>
+            <button class="suggestion-btn" data-query="Action movie with great stunts">💥 Action-packed</button>
+        </div>
+        
         <div class="input-group">
             <input 
                 type="text" 
@@ -205,6 +245,16 @@
         const loading = document.getElementById('loading');
         const result = document.getElementById('result');
         const error = document.getElementById('error');
+
+        // Handle suggestion button clicks
+        document.querySelectorAll('.suggestion-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const query = btn.getAttribute('data-query');
+                queryInput.value = query;
+                getRecommendation();
+            });
+        });
 
         queryInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
